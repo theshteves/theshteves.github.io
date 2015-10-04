@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Steven Kneiser</title>
-    <link rel="short icon" type="image/x-icon" src="img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="short icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/threejs/r69/three.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
   </head>
-  <body>
-    <h1>theshteves.github.io</h1>
+  <body class="container-fluid">
+    <div class="row">
+      <div id="content" class="col-sm-8">
+      </div>
+      <div id="side" class="col-sm-4">
+	<h1>THREE.cube</h1>
+	<div class="input-group">
+	  <span class="input-group-addon">.rotation.x</span>
+	  <input id="rot-x" type="integer" class="form-control" placeholder="cube.rotation.x" aria-describedby="sizing-addon2">
+	</div>
+	<div class="input-group">
+	  <span class="input-group-addon">.rotation.y</span>
+	  <input id="rot-y" type="text" class="form-control" placeholder="cube.rotation.y" aria-describedby="sizing-addon2">
+	</div>
+	<div class="input-group">
+	  <span class="input-group-addon">.rotation.z</span>
+	  <input id="rot-z" type="text" class="form-control" placeholder="cube.rotation.z" aria-describedby="sizing-addon2">
+	</div>
+	<div class="row">
+	  <iframe id="gif" src="http://giphy.com/embed/87xihBthJ1DkA" frameborder="0" class="giphy-embed center-block" allowFullScreen></iframe>
+	</div>
+	<div class="row">
+	  <div id="submit" class="btn btn-warning center-block"><h1>DO IT</h1></div>
+	</div>
+      </div>
+    </div>
   </body>
 </html>
