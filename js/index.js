@@ -14,7 +14,7 @@ $(document).ready(function() {
     var geometry = new THREE.BoxGeometry( 1, 1, 1 );
     var material = new THREE.MeshBasicMaterial( { color: 0x18453C,
 						  wireframe: true,
-						  wireframewidth: 1} );
+						  wireframeLinewidth: 1} );
     var cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
 
@@ -23,9 +23,9 @@ $(document).ready(function() {
     var render = function () {
 	requestAnimationFrame( render );
 
-	cube.rotation.x += 0.00;
-	cube.rotation.y += 0.00;
-	cube.rotation.z += 0.00;
+	//cube.rotation.x += 0.00;
+	//cube.rotation.y += 0.00;
+	//cube.rotation.z += 0.00;
 
 	renderer.render(scene, camera);
     };
@@ -33,8 +33,13 @@ $(document).ready(function() {
     render();
 
     $("#submit").on("click", function() {
-	cube.rotation.x = parseInt($("#rot-x").val());
-	cube.rotation.y = parseInt($("#rot-y").val());
-	cube.rotation.z = parseInt($("#rot-z").val());
+	if ($("#rot-x").val() && $("#rot-y").val() && $("#rot-z").val()) {
+	    cube.rotation.x = parseInt($("#rot-x").val());
+	    cube.rotation.y = parseInt($("#rot-y").val());
+	    cube.rotation.z = parseInt($("#rot-z").val());
+	}
+	$("body").css("background-color", "#" + $("#color").val());
+	$("#content").css("background-color", "#" + $("#color").val());
+	renderer.setClearColor( parseInt("0x" + $("#color").val()));
     });
 });
