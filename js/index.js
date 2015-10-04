@@ -7,6 +7,7 @@ $(document).ready(function() {
 	HEIGHT = window.innerHeight,
 	WIDTH = $("#content").width();
     renderer.setSize(WIDTH, HEIGHT);
+    renderer.setClearColor(0xffffff);
     $("#content").append( renderer.domElement );
 
     var camera = new THREE.PerspectiveCamera( 30, WIDTH/HEIGHT, 0.1, 1000 );
@@ -20,12 +21,16 @@ $(document).ready(function() {
 
     camera.position.z = 5;
 
+    var ROTX = .01,
+	ROTY = .02,
+	ROTZ = .03;
+
     var render = function () {
 	requestAnimationFrame( render );
 
-	//cube.rotation.x += 0.00;
-	//cube.rotation.y += 0.00;
-	//cube.rotation.z += 0.00;
+	cube.rotation.x += ROTX;
+	cube.rotation.y += ROTY;
+	cube.rotation.z += ROTZ;
 
 	renderer.render(scene, camera);
     };
@@ -34,9 +39,9 @@ $(document).ready(function() {
 
     $("#submit").on("click", function() {
 	if ($("#rot-x").val() && $("#rot-y").val() && $("#rot-z").val()) {
-	    cube.rotation.x = parseInt($("#rot-x").val());
-	    cube.rotation.y = parseInt($("#rot-y").val());
-	    cube.rotation.z = parseInt($("#rot-z").val());
+	    ROTX = parseFloat($("#rot-x").val()) * .01;
+	    ROTY = parseFloat($("#rot-y").val()) * .01;
+	    ROTZ = parseFloat($("#rot-z").val()) * .01;
 	}
 	$("body").css("background-color", "#" + $("#color").val());
 	$("#content").css("background-color", "#" + $("#color").val());
