@@ -1,10 +1,10 @@
+.lato {
+    font-family: Lato;
+}
+
 body {
     margin: 0;
     background-color: #ffffff;
-}
-
-h1 {
-    font-family: Lato;
 }
 
 #content {
