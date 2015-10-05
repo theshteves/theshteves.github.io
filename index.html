@@ -12,36 +12,82 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/threejs/r69/three.min.js"></script>
     <script type="text/javascript" src="js/jscolor/jscolor.js"></script>
+    <script src="https://dl.dropboxusercontent.com/u/3587259/Code/Threejs/OrbitControls.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
   </head>
   <body class="container-fluid">
     <div class="row">
       <div id="content" class="col-sm-8">
+	<canvas></canvas>
       </div>
       <div id="side" class="col-sm-4">
-	<h1 class="lato">Background</h1>
+	<h1 class="lato">THREE.scene</h1>
 	<div class="input-group">
 	  <span class="input-group-addon lato">.color</span>
-	  <input id="color" type="text" class="form-control color" placeholder="Scene.background" aria-describedby="sizing-addon2">
+	  <input id="color" type="text" class="form-control color" placeholder="Scene.color" value="000000" aria-describedby="sizing-addon2">
 	</div>
-	<h1 class="lato">THREE.cube</h1>
+	<div class="input-group">
+	  <span class="input-group-addon lato">.mesh</span>
+	  <input id="mesh" type="text" class="form-control" placeholder="scene.mesh" aria-describedby="sizing-addon2">
+	  <div class="input-group-btn">
+	    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	      <span class="caret"></span>
+	      <span class="sr-only">Toggle Dropdown</span>
+	    </button>
+	    <ul id="mesh-list" class="dropdown-menu dropdown-menu-right">
+	      <li><a href="#">plane</a></li>
+	      <li><a href="#">circle</a></li>
+	      <li><a href="#">ring</a></li>
+	      <li><a href="#">cube</a></li>
+	      <li><a href="#">cylinder</a></li>
+	      <li><a href="#">sphere</a></li>
+	      <li><a href="#">torus</a></li>
+	      <li><a href="#">torusknot</a></li>
+	      <li><a href="#">tetrahedron</a></li>
+	      <li><a href="#">octahedron</a></li>
+	      <li><a href="#">dodecahedron</a></li>
+	      <li><a href="#">icosahedron</a></li>
+	      <li role="separator" class="divider"></li>
+	      <li><a href="#">custom text</a></li>
+	    </ul>
+	  </div>
+	</div>
+	<div class="input-group">
+	  <span class="input-group-addon lato">.quantity</span>
+	  <input id="quantity" type="text" class="form-control" placeholder="scene.quantity" aria-describedby="sizing-addon2" value="100">
+	</div>
+	<h1 class="lato">THREE.mesh</h1>
+	<div class="input-group">
+	  <span class="input-group-addon lato">.position.x</span>
+	  <input id="pos-x" type="text" class="form-control" placeholder="mesh.position.x" aria-describedby="sizing-addon2" value="Math.cos(t)*100">
+	</div>
+	<div class="input-group">
+	  <span class="input-group-addon lato">.position.y</span>
+	  <input id="pos-y" type="text" class="form-control" placeholder="mesh.position.y" aria-describedby="sizing-addon2" value="Math.sin(t)*100">
+	</div>
+	<div class="input-group">
+	  <span class="input-group-addon lato">.position.z</span>
+	  <input id="pos-z" type="text" class="form-control" placeholder="mesh.position.z" aria-describedby="sizing-addon2" value="t">
+	</div>
 	<div class="input-group">
 	  <span class="input-group-addon lato">.rotation.x</span>
-	  <input id="rot-x" type="text" class="form-control" placeholder="cube.rotation.x" aria-describedby="sizing-addon2">
+	  <input id="rot-x" type="text" class="form-control" placeholder="mesh.rotation.x" aria-describedby="sizing-addon2" value="Math.cos(t)">
 	</div>
 	<div class="input-group">
 	  <span class="input-group-addon lato">.rotation.y</span>
-	  <input id="rot-y" type="text" class="form-control" placeholder="cube.rotation.y" aria-describedby="sizing-addon2">
+	  <input id="rot-y" type="text" class="form-control" placeholder="mesh.rotation.y" aria-describedby="sizing-addon2" value="Math.sin(t)">
 	</div>
 	<div class="input-group">
 	  <span class="input-group-addon lato">.rotation.z</span>
-	  <input id="rot-z" type="text" class="form-control" placeholder="cube.rotation.z" aria-describedby="sizing-addon2">
+	  <input id="rot-z" type="text" class="form-control" placeholder="mesh.rotation.z" aria-describedby="sizing-addon2" value="t">
 	</div>
 	<div class="row">
-	  <iframe id="gif" src="http://giphy.com/embed/87xihBthJ1DkA" frameborder="0" class="giphy-embed center-block" allowFullScreen></iframe>
-	</div>
-	<div class="row">
-	  <div id="submit" class="btn btn-warning center-block"><h1 class="lato">DO IT</h1></div>
+	  <div class="col-sm-8">
+	    <iframe id="gif" src="http://giphy.com/embed/87xihBthJ1DkA" frameborder="0" class="giphy-embed center-block" allowFullScreen></iframe>
+	  </div>
+	  <div class="col-sm-4">
+	    <div id="submit" class="btn btn-warning center-block"><span class="glyphicon glyphicon-plus-sign"></span></div>
+	  </div>
 	</div>
       </div>
     </div>

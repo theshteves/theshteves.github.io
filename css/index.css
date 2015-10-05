@@ -4,12 +4,12 @@
 
 body {
     margin: 0;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 #content {
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 #side {
@@ -24,8 +24,13 @@ body {
 }
 
 #submit {
-    width: 240px;
-    margin-top: 25px;
+    height: 288px;
+    margin-top: 50px;
+}
+
+#submit > span {
+    font-size: 25pt;
+    margin-top: 115px;
 }
 
 #submit:hover {
