@@ -1,95 +1,219 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Steven Kneiser</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="short icon" type="image/x-icon" href="img/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/threejs/r69/three.min.js"></script>
-    <script type="text/javascript" src="js/jscolor/jscolor.js"></script>
-    <script src="https://dl.dropboxusercontent.com/u/3587259/Code/Threejs/OrbitControls.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+<html lang="en"><head>
+    <title>three.js webgl - geometry - terrain</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+      body {
+      color: #000;
+      font-family:Monospace;
+      font-size:13px;
+      margin: 0px;
+      overflow: hidden;
+      }
+
+      #info {
+      position: absolute;
+      top: 0px; width: 100%;
+      text-align:center;
+      padding: 5px;
+      }
+
+      a {
+
+      color: #a06851;
+      }
+
+    </style>
   </head>
-  <body class="container-fluid">
-    <div class="row">
-      <div id="content" class="col-sm-8">
-	<canvas></canvas>
-      </div>
-      <div id="side" class="col-sm-4">
-	<h1 class="lato">THREE.scene</h1>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.color</span>
-	  <input id="color" type="text" class="form-control color" placeholder="Scene.color" value="000000" aria-describedby="sizing-addon2">
-	</div>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.mesh</span>
-	  <input id="mesh" type="text" class="form-control" placeholder="scene.mesh" aria-describedby="sizing-addon2">
-	  <div class="input-group-btn">
-	    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	      <span class="caret"></span>
-	      <span class="sr-only">Toggle Dropdown</span>
-	    </button>
-	    <ul id="mesh-list" class="dropdown-menu dropdown-menu-right">
-	      <li><a href="#">plane</a></li>
-	      <li><a href="#">circle</a></li>
-	      <li><a href="#">ring</a></li>
-	      <li><a href="#">cube</a></li>
-	      <li><a href="#">cylinder</a></li>
-	      <li><a href="#">sphere</a></li>
-	      <li><a href="#">torus</a></li>
-	      <li><a href="#">torusknot</a></li>
-	      <li><a href="#">tetrahedron</a></li>
-	      <li><a href="#">octahedron</a></li>
-	      <li><a href="#">dodecahedron</a></li>
-	      <li><a href="#">icosahedron</a></li>
-	      <li role="separator" class="divider"></li>
-	      <li><a href="#">custom text</a></li>
-	    </ul>
-	  </div>
-	</div>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.quantity</span>
-	  <input id="quantity" type="text" class="form-control" placeholder="scene.quantity" aria-describedby="sizing-addon2" value="100">
-	</div>
-	<h1 class="lato">THREE.mesh</h1>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.position.x</span>
-	  <input id="pos-x" type="text" class="form-control" placeholder="mesh.position.x" aria-describedby="sizing-addon2" value="Math.cos(t)*100">
-	</div>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.position.y</span>
-	  <input id="pos-y" type="text" class="form-control" placeholder="mesh.position.y" aria-describedby="sizing-addon2" value="Math.sin(t)*100">
-	</div>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.position.z</span>
-	  <input id="pos-z" type="text" class="form-control" placeholder="mesh.position.z" aria-describedby="sizing-addon2" value="t">
-	</div>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.rotation.x</span>
-	  <input id="rot-x" type="text" class="form-control" placeholder="mesh.rotation.x" aria-describedby="sizing-addon2" value="Math.cos(t)">
-	</div>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.rotation.y</span>
-	  <input id="rot-y" type="text" class="form-control" placeholder="mesh.rotation.y" aria-describedby="sizing-addon2" value="Math.sin(t)">
-	</div>
-	<div class="input-group">
-	  <span class="input-group-addon lato">.rotation.z</span>
-	  <input id="rot-z" type="text" class="form-control" placeholder="mesh.rotation.z" aria-describedby="sizing-addon2" value="t">
-	</div>
-	<div class="row">
-	  <div class="col-sm-8">
-	    <iframe id="gif" src="http://giphy.com/embed/87xihBthJ1DkA" frameborder="0" class="giphy-embed center-block" allowFullScreen></iframe>
-	  </div>
-	  <div class="col-sm-4">
-	    <div id="submit" class="btn btn-warning center-block"><span class="glyphicon glyphicon-plus-sign"></span></div>
-	  </div>
-	</div>
-      </div>
-    </div>
-  </body>
-</html>
+  <body>
+
+    <script src="js/three.min.js" type="text/javascript"></script>
+
+    <script src="js/controls/OrbitControls.js"></script>
+    <script src="js/Mirror.js"></script>
+    <script src="js/WaterShader.js"></script>
+
+    <script src="js/Detector.js"></script>
+    <script src="js/libs/stats.min.js"></script>
+
+    <script>
+
+      if ( ! Detector.webgl ) {
+
+      Detector.addGetWebGLMessage();
+      document.getElementById( 'container' ).innerHTML = "";
+
+      }
+
+      var container, stats;
+      var camera, scene, renderer;
+      var sphere;
+
+      var parameters = {
+      width: 2000,
+      height: 2000,
+      widthSegments: 250,
+      heightSegments: 250,
+      depth: 1500,
+      param: 4,
+      filterparam: 1
+      };
+
+      var waterNormals;
+
+      init();
+      animate();
+
+      function init() {
+
+      container = document.createElement( 'div' );
+      document.body.appendChild( container );
+
+      renderer = new THREE.WebGLRenderer();
+      renderer.setPixelRatio( window.devicePixelRatio );
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      container.appendChild( renderer.domElement );
+
+      scene = new THREE.Scene();
+
+      camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 0.5, 3000000 );
+      camera.position.set( 2000, 750, 2000 );
+
+      controls = new THREE.OrbitControls( camera, renderer.domElement );
+      controls.enablePan = false;
+      controls.minDistance = 1000.0;
+      controls.maxDistance = 5000.0;
+      controls.maxPolarAngle = Math.PI * 0.495;
+      controls.center.set( 0, 500, 0 );
+
+      scene.add( new THREE.AmbientLight( 0x444444 ) );
+
+      var light = new THREE.DirectionalLight( 0xffffbb, 1 );
+      light.position.set( - 1, 1, - 1 );
+      scene.add( light );
+
+
+      waterNormals = new THREE.ImageUtils.loadTexture( 'img/waternormals.jpg' );
+      waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
+
+      water = new THREE.Water( renderer, camera, scene, {
+      textureWidth: 512,
+      textureHeight: 512,
+      waterNormals: waterNormals,
+      alpha: 1.0,
+      sunDirection: light.position.clone().normalize(),
+      sunColor: 0xffffff,
+      waterColor: 0x001e0f,
+      distortionScale: 50.0,
+      } );
+
+
+      mirrorMesh = new THREE.Mesh(
+      new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+      water.material
+      );
+
+      mirrorMesh.add( water );
+      mirrorMesh.rotation.x = - Math.PI * 0.5;
+      scene.add( mirrorMesh );
+
+
+      // load skybox
+
+      var cubeMap = new THREE.CubeTexture( [] );
+      cubeMap.format = THREE.RGBFormat;
+
+      var loader = new THREE.ImageLoader();
+      loader.load( 'img/skyboxsun25degtest.png', function ( image ) {
+
+      var getSide = function ( x, y ) {
+
+      var size = 1024;
+
+      var canvas = document.createElement( 'canvas' );
+      canvas.width = size;
+      canvas.height = size;
+
+      var context = canvas.getContext( '2d' );
+      context.drawImage( image, - x * size, - y * size );
+
+      return canvas;
+
+      };
+
+      cubeMap.images[ 0 ] = getSide( 2, 1 ); // px
+      cubeMap.images[ 1 ] = getSide( 0, 1 ); // nx
+      cubeMap.images[ 2 ] = getSide( 1, 0 ); // py
+      cubeMap.images[ 3 ] = getSide( 1, 2 ); // ny
+      cubeMap.images[ 4 ] = getSide( 1, 1 ); // pz
+      cubeMap.images[ 5 ] = getSide( 3, 1 ); // nz
+      cubeMap.needsUpdate = true;
+
+      } );
+
+      var cubeShader = THREE.ShaderLib[ 'cube' ];
+      cubeShader.uniforms[ 'tCube' ].value = cubeMap;
+
+      var skyBoxMaterial = new THREE.ShaderMaterial( {
+      fragmentShader: cubeShader.fragmentShader,
+      vertexShader: cubeShader.vertexShader,
+      uniforms: cubeShader.uniforms,
+      depthWrite: false,
+      side: THREE.BackSide
+      } );
+
+      var skyBox = new THREE.Mesh(
+      new THREE.BoxGeometry( 1000000, 1000000, 1000000 ),
+      skyBoxMaterial
+      );
+
+      scene.add( skyBox );
+
+
+      var geometry = new THREE.IcosahedronGeometry( 400, 4 );
+
+      for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
+
+						      geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
+
+						      }
+
+						      var material = new THREE.MeshPhongMaterial( {
+						      vertexColors: THREE.FaceColors,
+						      shininess: 100,
+						      envMap: cubeMap
+						      } );
+
+						      sphere = new THREE.Mesh( geometry, material );
+						      scene.add( sphere );
+
+						      }
+
+						      //
+
+						      function animate() {
+
+						      requestAnimationFrame( animate );
+						      render();
+
+						      }
+
+						      function render() {
+
+						      var time = performance.now() * 0.001;
+
+						      sphere.position.y = Math.sin( time ) * 500 + 250;
+						      sphere.rotation.x = time * 0.5;
+						      sphere.rotation.z = time * 0.51;
+
+						      water.material.uniforms.time.value += 1.0 / 60.0;
+						      controls.update();
+						      water.render();
+						      renderer.render( scene, camera );
+
+						      }
+
+						      </script><div><canvas width="755" height="777" style="width: 755px; height: 777px;"></canvas></div>
+
+
+</body></html>
